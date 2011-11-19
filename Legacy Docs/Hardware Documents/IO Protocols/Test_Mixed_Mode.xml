@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <generic>
+
+        <output>
+
+            <binary_mode>true</binary_mode>
+                <!-- Format is tightly packed and byte order is big endian -->
+
+            <chunk>
+                <name>X Acceleration (ft/s/s)</name>
+                <node>/accelerations/pilot/x-accel-fps_sec</node>
+                <type>double</type>
+            </chunk>
+                <!-- Positive is Foreward, Negative is Backward -->
+
+            <chunk>
+                <name>Y Acceleration (ft/s/s)</name>
+			<node>/accelerations/pilot/y-accel-fps_sec</node>
+                <type>double</type>
+            </chunk>
+                <!-- Positive is Right, Negative is Left -->
+
+            <chunk>
+                <name>Z Acceleration (ft/s/s)</name>
+                <node>/accelerations/pilot/z-accel-fps_sec</node>
+                <type>double</type>
+            </chunk>
+                <!-- Positive is Up, Negative is Down -->
+
+            <chunk>
+                <name>Roll Angular Velicity (deg/s)</name>
+                <node>/orientation/roll-rate-degps</node>
+                <type>double</type>
+            </chunk>
+                <!-- Positive is +X (Right), Negative is -X (Left) -->
+
+            <chunk>
+                <name>Pitch Angular Velocity (deg/s)</name>
+                <node>/orientation/pitch-rate-degps</node>
+                <type>double</type>
+            </chunk>
+                <!-- Positive is +Y (Up), Negative is -Y (Down) -->
+
+            <chunk>
+                <name>Yaw Angular Velocity (deg/s)</name>
+                <node>/orientation/yaw-rate-degps</node>
+                <type>double</type>
+            </chunk>
+                <!-- Positive is +Z (Right), Negative is -Z (Left) -->
+
+        </output>
+
+        <input>
+
+            <var_separator>\t</var_separator>
+            <line_separator>\n</line_separator>
+
+            <chunk>
+                <name>Aileron Control (normalized)</name>
+                <node>/controls/flight/aileron</node>
+                <type>double</type>
+                <format>%g</format>
+            </chunk>
+                <!-- +1 is full +X (Right), -1 is full -X (Left) -->
+
+            <chunk>
+                <name>Elevator Control (normalized)</name>
+                <node>/controls/flight/elevator</node>
+                <type>double</type>
+                <format>%g</format>
+            </chunk>
+                <!-- +1 is full -Y (Down), -1 is full +Y (Up) -->
+
+            <chunk>
+                <name>Rudder Control (normalized)</name>
+                <node>/controls/flight/rudder</node>
+                <type>double</type>
+                <format>%g</format>
+            </chunk>
+                <!-- +1 is full -Z (Right), -1 is full +Z (Left) -->
+
+            <chunk>
+                <name>Throttle Control (normalized)</name>
+                <node>/controls/engines/engine/throttle</node>
+                <type>double</type>
+                <format>%g</format>
+            </chunk>
+
+        </input>
+
+    </generic>
+
+</PropertyList>
