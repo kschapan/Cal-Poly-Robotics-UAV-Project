@@ -1,0 +1,12 @@
+This is the code repository for the Cal Poly Robotics UAV Project.
+
+The goal of the project is to create a fully autonomous QuadCopter.
+
+We are currently building the quadcopter and writing basic data-logging libraries.
+
+The website for the project can be found at:
+http://robotics.ee.calpoly.edu/project.php?id=22
+
+It contains:
+-Legacy Documents for the project
+-Arduino Flight Stabilization source code
