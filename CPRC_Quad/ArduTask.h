@@ -2,22 +2,19 @@
  * Cal Poly Robotics Club QuadRotor Project
  * Header file for tasks
  *
- * @Modified Date: 11/20/11
- * @Modified By: Kevin Schapansky
- *
- * Change Log:
- *
  */
  
 #ifndef ARDUTASK_h
 #define ARDUTASK_h
  
 #include <avr/io.h>
- 
+
+#define DEFAULT_INTERVAL 1000000
+
 class ArduTask {
   protected:
     int maxTime;
-    int interval;
+    unsigned long interval;
   
   public:
     ArduTask();
@@ -25,7 +22,8 @@ class ArduTask {
     virtual void initialize();
     virtual void run();
     virtual int getMaxTime();
-    virtual int getInterval();
+    virtual unsigned long setInterval(unsigned long);
+    virtual unsigned long getInterval();
 };
  
 #endif

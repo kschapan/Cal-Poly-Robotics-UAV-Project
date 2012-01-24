@@ -2,11 +2,6 @@
  * Cal Poly Robotics Club QuadRotor Project
  * Task Scheduler, responsible for running tasks
  *
- * @Modified Date: 11/20/11
- * @Modified By: Kevin Schapansky
- *
- * Change Log:
- *
  */
 
 #include "TaskScheduler.h"
@@ -21,34 +16,34 @@ TaskScheduler::~TaskScheduler() {
 }
 
 void TaskScheduler::execute() {
-  while (taskList[currentTask]->executionRequested == 0)
-    currentTask = (currentTask + 1) % (tasksAdded - 1);
-  taskList[currentTask]->task->run();
-  taskList[currentTask]->executionRequested = 0;
-  taskList[currentTask]->timeSinceExecution = 0;
-  currentTask = (currentTask + 1) % (tasksAdded - 1);
+  while (taskList[currentTask].executionRequested == 0)
+    currentTask = (currentTask + 1) % (tasksAdded);
+  taskList[currentTask].task->run();
+  taskList[currentTask].executionRequested = 0;
+  taskList[currentTask].timeSinceExecution = 0;
+  currentTask = (currentTask + 1) % (tasksAdded);
 }
 
 void TaskScheduler::initialize(int taskCount) {
-  taskList = (Task **) malloc(taskCount * sizeof(Task **));
+  taskList = (Task *) malloc(taskCount * sizeof(Task));
 }
 
 void TaskScheduler::taskMon() {
   for (int i = 0; i < tasksAdded; i++) {
-    if ((taskList[i]->timeSinceExecution += RESOLUTION) >= taskList[i]->interval) {
-      taskList[i]->executionRequested = 1;
+    if ((taskList[i].timeSinceExecution += RESOLUTION) >= taskList[i].task->getInterval()) {
+      taskList[i].executionRequested = 1;
+      taskList[i].timeSinceExecution = taskList[i].task->getInterval();
     }
   }
 }
 
-void TaskScheduler::registerTask(ArduTask *newTask) {
+void TaskScheduler::registerAndInitTask(ArduTask *newTask) {
   Task toAdd;
   
   toAdd.task = newTask;
-  toAdd.interval = newTask->getInterval();
+  newTask->initialize();
   toAdd.executionRequested = 1;
   toAdd.timeSinceExecution = 0;
-  taskList[tasksAdded++] = &toAdd;
-  newTask->initialize();
+  taskList[tasksAdded++] = toAdd;
 }
 

@@ -3,16 +3,11 @@
  * Parent class of all tasks to be executed
  * ALL TASKS MUST EXTEND THIS CLASS
  *
- * @Modified Date: 11/20/11
- * @Modified By: Kevin Schapansky
- *
- * Change Log:
- *
  */
  
 #include "ArduTask.h"
 
-ArduTask::ArduTask() {}
+ArduTask::ArduTask() {interval = DEFAULT_INTERVAL;}
 
 ArduTask::~ArduTask() {}
 
@@ -27,7 +22,11 @@ int ArduTask::getMaxTime() {
   return maxTime;
 }
 
-int ArduTask::getInterval() {
+unsigned long ArduTask::setInterval(unsigned long newInterval) {
+  interval = newInterval;
+}
+
+unsigned long ArduTask::getInterval() {
   return interval;
 }
 
